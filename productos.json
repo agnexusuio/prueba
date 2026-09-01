@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "nombre": "LENOVO IDEAPAD SLIM 3 Intel Core I3-N305 8gb RAM 128gb SSD 15.6” W11 $ 435.00",
+    "precio": 610,
+    "categoria": "Laptops",
+    "caracteristicas": [
+      "LENOVO IDEAPAD SLIM 3 Intel Core I3",
+      "N305 8gb RAM 128gb SSD 15.6” W11 $ 435.00",
+      "LENOVO IDEAPAD SLIM 3",
+      "Intel"
+    ],
+    "imagen": null,
+    "url_origen": "https://digitalpcecuador.com"
+  }
+]
