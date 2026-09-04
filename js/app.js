@@ -24,11 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const res = await fetch(`${JSON_PATH}?t=${Date.now()}`);
       if (!res.ok) throw new Error('No se pudo acceder a productos.json');
       allProducts = await res.json();
+      if (!allProducts || allProducts.length === 0) {
+        throw new Error('No hay productos en el JSON');
+      }
       renderCatalog();
     } catch (err) {
+      console.error('Error cargando productos:', err);
       if (catalogStatus) {
-        catalogStatus.innerHTML = '<p style="color: #ef4444;">No se pudieron cargar los productos. Ejecuta el scraper para poblar el inventario.</p>';
+        catalogStatus.innerHTML = '<p style="color: #ef4444;">❌ Error cargando productos. ' + err.message + '</p>';
+        catalogStatus.style.display = 'block';
       }
+      productGrid.innerHTML = '';
     }
   }
 
@@ -36,7 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let filtered = allProducts.filter(item => {
       const catMatch = currentCategory === 'todos' || (item.categoria && item.categoria.toLowerCase() === currentCategory.toLowerCase());
       const query = searchQuery.toLowerCase().trim();
-      const textMatch = !query || item.nombre.toLowerCase().includes(query) || (item.caracteristicas && item.caracteristicas.some(c => c.toLowerCase().includes(query)));
+      const textMatch = !query || 
+        (item.nombre && item.nombre.toLowerCase().includes(query)) || 
+        (item.caracteristicas && item.caracteristicas.some(c => c && c.toLowerCase().includes(query)));
       return catMatch && textMatch;
     });
 
@@ -58,15 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
     catalogStatus.style.display = 'none';
     productGrid.innerHTML = filtered.map(p => createCard(p)).join('');
 
+    // Reinitialize lucide icons
     if (window.lucide) {
       lucide.createIcons();
     }
   }
 
   function createCard(p) {
-    const defaultSvg = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="%2394a3b8" stroke-width="1.5"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>';
+    const defaultSvg = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="%2394a3b8" stroke-width="1.5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M12 8v8M8 12h8"/></svg>';
     let img = p.imagen || defaultSvg;
-    if (img.startsWith('imagenes/')) img = './' + img;
+    if (img && img.startsWith('imagenes/')) {
+      img = './' + img;
+    }
 
     const precio = Number(p.precio) ? `$${Number(p.precio).toFixed(2)}` : 'Consultar';
     const specs = (p.caracteristicas || []).slice(0, 4);
@@ -101,7 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function escapeHtml(text) {
     if (!text) return '';
-    return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
   }
 
   searchInput.addEventListener('input', (e) => {
@@ -114,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.value = '';
     searchQuery = '';
     clearSearch.style.display = 'none';
+    searchInput.focus();
     renderCatalog();
   });
 
