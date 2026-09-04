@@ -481,69 +481,121 @@
     </footer>
 
     <script>
-        // Productos de ejemplo
-        const products = {
-            laptops: [
-                { name: "Laptop ASUS VivoBook 15.6\" Intel Core i3", price: "$299.99", source: "pinsoft.ec", icon: "💻" },
-                { name: "Lenovo IdeaPad 3 14\" AMD Ryzen 3", price: "$349.99", source: "digitalpcecuador.com", icon: "💻" },
-                { name: "Dell Vostro 3410 14\" Intel i5", price: "$449.99", source: "pinsoft.ec", icon: "💻" },
-                { name: "HP Pavilion 15.6\" Intel Core i3", price: "$329.99", source: "digitalpcecuador.com", icon: "💻" },
-                { name: "Acer Aspire 3 15.6\" AMD Ryzen 5", price: "$389.99", source: "pinsoft.ec", icon: "💻" },
-                { name: "ASUS ExpertBook 14\" Core i7", price: "$599.99", source: "digitalpcecuador.com", icon: "💻" },
-                { name: "Lenovo ThinkBook 14\" Ryzen 7", price: "$519.99", source: "pinsoft.ec", icon: "💻" },
-                { name: "HP ProBook 440 14\" Intel i5", price: "$479.99", source: "digitalpcecuador.com", icon: "💻" },
-                { name: "Dell Latitude 3000 15.6\" i7", price: "$529.99", source: "pinsoft.ec", icon: "💻" },
-                { name: "Acer TravelMate 14\" Intel i5", price: "$419.99", source: "digitalpcecuador.com", icon: "💻" }
-            ],
-            phones: [
-                { name: "Samsung Galaxy A12 64GB", price: "$149.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Redmi Note 10 128GB", price: "$179.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Motorola Moto G30 128GB", price: "$189.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Samsung Galaxy A21s 64GB", price: "$159.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Realme C21 64GB", price: "$129.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Infinix Smart 6 64GB", price: "$119.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "ZTE Blade A56 64GB", price: "$139.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Tecno Spark Go 3 64GB", price: "$109.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Motorola Moto E7 Power 64GB", price: "$169.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Honor Play 10 64GB", price: "$199.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Samsung Galaxy A02 32GB", price: "$99.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Xiaomi Redmi A7 Pro 64GB", price: "$149.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "LOGIC G1L Gaming Phone 256GB", price: "$249.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Infinix Smart 20 128GB", price: "$159.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Motorola G06 256GB", price: "$219.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "TCL L10+ 128GB", price: "$189.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Honor X5c Plus 256GB", price: "$229.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Tecno Spark 30C 256GB", price: "$239.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "OPPO A5 4G 256GB", price: "$209.99", source: "mundotek.com.ec", icon: "📱" },
-                { name: "Motorola Moto G15 4G 512GB", price: "$279.99", source: "mundotek.com.ec", icon: "📱" }
-            ]
-        };
-
         // Función para crear tarjeta de producto
         function createProductCard(product) {
+            const precio = product.precio ? `$${product.precio}` : (product.price || "N/A");
+            const nombre = product.nombre || product.name || "Producto sin nombre";
+            const imagen = product.imagen ? `imagenes/${product.imagen}` : null;
+            const fuente = product.categoria ? `${product.categoria}` : (product.source || "Proveedor");
+            
+            let imagenHTML;
+            if (imagen) {
+                imagenHTML = `<img src="${imagen}" alt="${nombre}" style="width: 100%; height: 100%; object-fit: cover;">`;
+            } else {
+                // Icono basado en categoría
+                const icono = fuente.includes("Celular") || fuente.includes("Teléfono") ? "📱" : "💻";
+                imagenHTML = `<div style="font-size: 3rem;">${icono}</div>`;
+            }
+            
             return `
                 <div class="product-card">
-                    <div class="product-image">${product.icon}</div>
+                    <div class="product-image">
+                        ${imagenHTML}
+                    </div>
                     <div class="product-info">
-                        <div class="product-name">${product.name}</div>
-                        <div class="product-price">${product.price}</div>
-                        <div class="product-source">Fuente: ${product.source}</div>
+                        <div class="product-name">${nombre}</div>
+                        <div class="product-price">${precio}</div>
+                        <div class="product-source">Fuente: ${fuente}</div>
                     </div>
                 </div>
             `;
         }
 
-        // Cargar laptops
-        const laptopsGrid = document.getElementById('laptops-grid');
-        products.laptops.forEach(laptop => {
-            laptopsGrid.innerHTML += createProductCard(laptop);
-        });
-
-        // Cargar celulares
-        const phonesGrid = document.getElementById('phones-grid');
-        products.phones.forEach(phone => {
-            phonesGrid.innerHTML += createProductCard(phone);
-        });
+        // Cargar productos desde el JSON
+        fetch('productos.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar productos.json');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const laptopsGrid = document.getElementById('laptops-grid');
+                const phonesGrid = document.getElementById('phones-grid');
+                
+                // Separar productos por categoría
+                if (Array.isArray(data)) {
+                    // Formato del nuevo scraper
+                    const laptops = data.filter(p => p.categoria && p.categoria.includes("Laptop"));
+                    const phones = data.filter(p => p.categoria && (p.categoria.includes("Celular") || p.categoria.includes("Teléfono")));
+                    
+                    if (laptops.length > 0) {
+                        laptopsGrid.innerHTML = laptops.map(createProductCard).join('');
+                    } else {
+                        laptopsGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666;">No hay laptops disponibles</p>';
+                    }
+                    
+                    if (phones.length > 0) {
+                        phonesGrid.innerHTML = phones.map(createProductCard).join('');
+                    } else {
+                        phonesGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666;">No hay celulares disponibles</p>';
+                    }
+                } else if (data.laptops && data.phones) {
+                    // Formato antiguo
+                    laptopsGrid.innerHTML = data.laptops.map(createProductCard).join('');
+                    phonesGrid.innerHTML = data.phones.map(createProductCard).join('');
+                } else {
+                    laptopsGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666;">No hay datos disponibles</p>';
+                    phonesGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666;">No hay datos disponibles</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                console.log('Usando datos de fallback...');
+                
+                // Datos de fallback si el JSON no está disponible
+                const fallbackProducts = [
+                    { nombre: "Laptop ASUS VivoBook 15.6\" Intel Core i3", precio: 299.99, categoria: "Laptop", source: "pinsoft.ec" },
+                    { nombre: "Lenovo IdeaPad 3 14\" AMD Ryzen 3", precio: 349.99, categoria: "Laptop", source: "digitalpcecuador.com" },
+                    { nombre: "Dell Vostro 3410 14\" Intel i5", precio: 449.99, categoria: "Laptop", source: "pinsoft.ec" },
+                    { nombre: "HP Pavilion 15.6\" Intel Core i3", precio: 329.99, categoria: "Laptop", source: "digitalpcecuador.com" },
+                    { nombre: "Acer Aspire 3 15.6\" AMD Ryzen 5", precio: 389.99, categoria: "Laptop", source: "pinsoft.ec" },
+                    { nombre: "ASUS ExpertBook 14\" Core i7", precio: 599.99, categoria: "Laptop", source: "digitalpcecuador.com" },
+                    { nombre: "Lenovo ThinkBook 14\" Ryzen 7", precio: 519.99, categoria: "Laptop", source: "pinsoft.ec" },
+                    { nombre: "HP ProBook 440 14\" Intel i5", precio: 479.99, categoria: "Laptop", source: "digitalpcecuador.com" },
+                    { nombre: "Dell Latitude 3000 15.6\" i7", precio: 529.99, categoria: "Laptop", source: "pinsoft.ec" },
+                    { nombre: "Acer TravelMate 14\" Intel i5", precio: 419.99, categoria: "Laptop", source: "digitalpcecuador.com" },
+                    { nombre: "Samsung Galaxy A12 64GB", precio: 149.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Redmi Note 10 128GB", precio: 179.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Motorola Moto G30 128GB", precio: 189.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Samsung Galaxy A21s 64GB", precio: 159.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Realme C21 64GB", precio: 129.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Infinix Smart 6 64GB", precio: 119.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "ZTE Blade A56 64GB", precio: 139.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Tecno Spark Go 3 64GB", precio: 109.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Motorola Moto E7 Power 64GB", precio: 169.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Honor Play 10 64GB", precio: 199.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Samsung Galaxy A02 32GB", precio: 99.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Xiaomi Redmi A7 Pro 64GB", precio: 149.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "LOGIC G1L Gaming Phone 256GB", precio: 249.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Infinix Smart 20 128GB", precio: 159.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Motorola G06 256GB", precio: 219.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "TCL L10+ 128GB", precio: 189.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Honor X5c Plus 256GB", precio: 229.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Tecno Spark 30C 256GB", precio: 239.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "OPPO A5 4G 256GB", precio: 209.99, categoria: "Celular", source: "mundotek.com.ec" },
+                    { nombre: "Motorola Moto G15 4G 512GB", precio: 279.99, categoria: "Celular", source: "mundotek.com.ec" }
+                ];
+                
+                const laptopsGrid = document.getElementById('laptops-grid');
+                const phonesGrid = document.getElementById('phones-grid');
+                
+                const laptops = fallbackProducts.filter(p => p.categoria === "Laptop");
+                const phones = fallbackProducts.filter(p => p.categoria === "Celular");
+                
+                laptopsGrid.innerHTML = laptops.map(createProductCard).join('');
+                phonesGrid.innerHTML = phones.map(createProductCard).join('');
+            });
     </script>
 </body>
 </html>
