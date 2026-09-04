@@ -1,3 +1,0 @@
-# Repositorio Limpio
-
-Repositorio reiniciado.
