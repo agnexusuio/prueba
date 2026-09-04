@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGNEXUSUIO - Equipos Tecnológicos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #eef2f7 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Header / Navigation */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 400;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #667eea;
+        }
+
+        section .section-subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            min-height: 2.4rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .product-source {
+            font-size: 0.85rem;
+            color: #95a5a6;
+            margin-bottom: auto;
+        }
+
+        /* Category Sections */
+        .laptops-section {
+            background: white;
+        }
+
+        .phones-section {
+            background: #f5f7fa;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            color: #667eea;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            color: #7f8c8d;
+            font-weight: 300;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            font-weight: 300;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            section {
+                padding: 2rem 0;
+            }
+
+            .product-card {
+                margin: 0 auto;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">AGNEXUSUIO</div>
+            <ul class="nav-links">
+                <li><a href="#laptops">Laptops</a></li>
+                <li><a href="#phones">Celulares</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Tecnología al Mejor Precio</h1>
+            <p>Descubre las mejores ofertas en laptops y celulares para tu negocio</p>
+            <div class="cta-buttons">
+                <a href="#laptops" class="btn btn-primary">Ver Laptops</a>
+                <a href="#contact" class="btn btn-secondary">Contactar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container" style="margin-top: 3rem;">
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">✓</div>
+                <h3>Precios Competitivos</h3>
+                <p>Las mejores ofertas del mercado ecuatoriano</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📦</div>
+                <h3>Envíos Rápidos</h3>
+                <p>Entrega en el menor tiempo posible</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🤝</div>
+                <h3>Atención Personalizada</h3>
+                <p>Contacto directo para tus consultas</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Laptops Section -->
+    <section id="laptops" class="laptops-section">
+        <div class="container">
+            <h2>Laptops Económicas</h2>
+            <p class="section-subtitle">Mejores precios desde los principales distribuidores</p>
+            <div class="products-grid" id="laptops-grid">
+                <!-- Laptops serán cargadas aquí -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Phones Section -->
+    <section id="phones" class="phones-section">
+        <div class="container">
+            <h2>Celulares al Mejor Precio</h2>
+            <p class="section-subtitle">Últimas ofertas en telefonía móvil</p>
+            <div class="products-grid" id="phones-grid">
+                <!-- Celulares serán cargados aquí -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Ponte en Contacto</h2>
+            <p class="section-subtitle">Tenemos las mejores opciones para ti</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>WhatsApp</h3>
+                    <a href="https://wa.me/593992217314" target="_blank">+593 99 221 7314</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Correo</h3>
+                    <a href="mailto:contacto@agnexusuio.com">contacto@agnexusuio.com</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Empresa</h3>
+                    <p>AGNEXUSUIO</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 AGNEXUSUIO. Todos los derechos reservados.</p>
+        <p>Equipos tecnológicos de calidad a los mejores precios</p>
+    </footer>
+
+    <script>
+        // Productos de ejemplo
+        const products = {
+            laptops: [
+                { name: "Laptop ASUS VivoBook 15.6\" Intel Core i3", price: "$299.99", source: "pinsoft.ec", icon: "💻" },
+                { name: "Lenovo IdeaPad 3 14\" AMD Ryzen 3", price: "$349.99", source: "digitalpcecuador.com", icon: "💻" },
+                { name: "Dell Vostro 3410 14\" Intel i5", price: "$449.99", source: "pinsoft.ec", icon: "💻" },
+                { name: "HP Pavilion 15.6\" Intel Core i3", price: "$329.99", source: "digitalpcecuador.com", icon: "💻" },
+                { name: "Acer Aspire 3 15.6\" AMD Ryzen 5", price: "$389.99", source: "pinsoft.ec", icon: "💻" },
+                { name: "ASUS ExpertBook 14\" Core i7", price: "$599.99", source: "digitalpcecuador.com", icon: "💻" },
+                { name: "Lenovo ThinkBook 14\" Ryzen 7", price: "$519.99", source: "pinsoft.ec", icon: "💻" },
+                { name: "HP ProBook 440 14\" Intel i5", price: "$479.99", source: "digitalpcecuador.com", icon: "💻" },
+                { name: "Dell Latitude 3000 15.6\" i7", price: "$529.99", source: "pinsoft.ec", icon: "💻" },
+                { name: "Acer TravelMate 14\" Intel i5", price: "$419.99", source: "digitalpcecuador.com", icon: "💻" }
+            ],
+            phones: [
+                { name: "Samsung Galaxy A12 64GB", price: "$149.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Redmi Note 10 128GB", price: "$179.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Motorola Moto G30 128GB", price: "$189.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Samsung Galaxy A21s 64GB", price: "$159.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Realme C21 64GB", price: "$129.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Infinix Smart 6 64GB", price: "$119.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "ZTE Blade A56 64GB", price: "$139.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Tecno Spark Go 3 64GB", price: "$109.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Motorola Moto E7 Power 64GB", price: "$169.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Honor Play 10 64GB", price: "$199.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Samsung Galaxy A02 32GB", price: "$99.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Xiaomi Redmi A7 Pro 64GB", price: "$149.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "LOGIC G1L Gaming Phone 256GB", price: "$249.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Infinix Smart 20 128GB", price: "$159.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Motorola G06 256GB", price: "$219.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "TCL L10+ 128GB", price: "$189.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Honor X5c Plus 256GB", price: "$229.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Tecno Spark 30C 256GB", price: "$239.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "OPPO A5 4G 256GB", price: "$209.99", source: "mundotek.com.ec", icon: "📱" },
+                { name: "Motorola Moto G15 4G 512GB", price: "$279.99", source: "mundotek.com.ec", icon: "📱" }
+            ]
+        };
+
+        // Función para crear tarjeta de producto
+        function createProductCard(product) {
+            return `
+                <div class="product-card">
+                    <div class="product-image">${product.icon}</div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">${product.price}</div>
+                        <div class="product-source">Fuente: ${product.source}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Cargar laptops
+        const laptopsGrid = document.getElementById('laptops-grid');
+        products.laptops.forEach(laptop => {
+            laptopsGrid.innerHTML += createProductCard(laptop);
+        });
+
+        // Cargar celulares
+        const phonesGrid = document.getElementById('phones-grid');
+        products.phones.forEach(phone => {
+            phonesGrid.innerHTML += createProductCard(phone);
+        });
+    </script>
+</body>
+</html>
