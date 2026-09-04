@@ -1,0 +1,156 @@
+{
+  "laptops": [
+    {
+      "name": "Laptop ASUS VivoBook 15.6\" Intel Core i3",
+      "price": "$299.99",
+      "source": "pinsoft.ec"
+    },
+    {
+      "name": "Lenovo IdeaPad 3 14\" AMD Ryzen 3",
+      "price": "$349.99",
+      "source": "digitalpcecuador.com"
+    },
+    {
+      "name": "Dell Vostro 3410 14\" Intel i5",
+      "price": "$449.99",
+      "source": "pinsoft.ec"
+    },
+    {
+      "name": "HP Pavilion 15.6\" Intel Core i3",
+      "price": "$329.99",
+      "source": "digitalpcecuador.com"
+    },
+    {
+      "name": "Acer Aspire 3 15.6\" AMD Ryzen 5",
+      "price": "$389.99",
+      "source": "pinsoft.ec"
+    },
+    {
+      "name": "ASUS ExpertBook 14\" Core i7",
+      "price": "$599.99",
+      "source": "digitalpcecuador.com"
+    },
+    {
+      "name": "Lenovo ThinkBook 14\" Ryzen 7",
+      "price": "$519.99",
+      "source": "pinsoft.ec"
+    },
+    {
+      "name": "HP ProBook 440 14\" Intel i5",
+      "price": "$479.99",
+      "source": "digitalpcecuador.com"
+    },
+    {
+      "name": "Dell Latitude 3000 15.6\" i7",
+      "price": "$529.99",
+      "source": "pinsoft.ec"
+    },
+    {
+      "name": "Acer TravelMate 14\" Intel i5",
+      "price": "$419.99",
+      "source": "digitalpcecuador.com"
+    }
+  ],
+  "phones": [
+    {
+      "name": "Samsung Galaxy A12 64GB",
+      "price": "$149.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Redmi Note 10 128GB",
+      "price": "$179.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Motorola Moto G30 128GB",
+      "price": "$189.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Samsung Galaxy A21s 64GB",
+      "price": "$159.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Realme C21 64GB",
+      "price": "$129.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Infinix Smart 6 64GB",
+      "price": "$119.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "ZTE Blade A56 64GB",
+      "price": "$139.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Tecno Spark Go 3 64GB",
+      "price": "$109.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Motorola Moto E7 Power 64GB",
+      "price": "$169.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Honor Play 10 64GB",
+      "price": "$199.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Samsung Galaxy A02 32GB",
+      "price": "$99.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Xiaomi Redmi A7 Pro 64GB",
+      "price": "$149.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "LOGIC G1L Gaming Phone 256GB",
+      "price": "$249.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Infinix Smart 20 128GB",
+      "price": "$159.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Motorola G06 256GB",
+      "price": "$219.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "TCL L10+ 128GB",
+      "price": "$189.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Honor X5c Plus 256GB",
+      "price": "$229.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Tecno Spark 30C 256GB",
+      "price": "$239.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "OPPO A5 4G 256GB",
+      "price": "$209.99",
+      "source": "mundotek.com.ec"
+    },
+    {
+      "name": "Motorola Moto G15 4G 512GB",
+      "price": "$279.99",
+      "source": "mundotek.com.ec"
+    }
+  ]
+}
