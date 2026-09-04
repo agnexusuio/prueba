@@ -1,11 +1,11 @@
 [
   {
-    "nombre": "LENOVO IDEAPAD SLIM 3 Intel Core I3-N305 8gb RAM 128gb SSD 15.6” W11 $ 435.00",
+    "nombre": "LENOVO IDEAPAD SLIM 3 Intel Core I3-N305 8gb RAM 128gb SSD 15.6\" W11 $ 435.00",
     "precio": 610,
     "categoria": "Laptops",
     "caracteristicas": [
       "LENOVO IDEAPAD SLIM 3 Intel Core I3",
-      "N305 8gb RAM 128gb SSD 15.6” W11 $ 435.00",
+      "N305 8gb RAM 128gb SSD 15.6\" W11 $ 435.00",
       "LENOVO IDEAPAD SLIM 3",
       "Intel"
     ],
@@ -54,7 +54,7 @@
       "Realme C21Y",
       "Ram4GB/64GB"
     ],
-    "imagen": null
+    "imagen": "imagenes/MundoTek_04_0b048d_Realme_C21Y_Ram4GB64GB.webp"
   },
   {
     "nombre": "Realme C11 (2021) RAM 2GB/32GB",
@@ -81,6 +81,18 @@
     "imagen": "imagenes/MundoTek_06_83dcbd_ZTE_Blade_A56_Pro_RAM_4+8_128GB.webp"
   },
   {
+    "nombre": "Tecno Spark Go 3 Ram4+4GB-128GB",
+    "precio": 200,
+    "categoria": "Celulares",
+    "caracteristicas": [
+      "Tecno Spark Go 3 Ram4+4GB",
+      "128GB",
+      "Tecno Spark Go 3",
+      "Ram4+4GB-128GB"
+    ],
+    "imagen": "imagenes/MundoTek_07_f0edc5_Tecno_Spark_Go_3_Ram4+4GB-128GB.webp"
+  },
+  {
     "nombre": "Infinix Hot 20i RAM 4+3 GB 128GB",
     "precio": 210,
     "categoria": "Celulares",
@@ -89,7 +101,7 @@
       "RAM 4+3",
       "GB 128GB"
     ],
-    "imagen": "imagenes/MundoTek_07_f10078_Infinix_Hot_20i_RAM_4+3_GB_128GB.webp"
+    "imagen": "imagenes/MundoTek_08_f10078_Infinix_Hot_20i_RAM_4+3_GB_128GB.webp"
   },
   {
     "nombre": "Samsung A07 Ram 4GB- 128GB",
@@ -102,18 +114,6 @@
       "Ram"
     ],
     "imagen": "imagenes/MundoTek_08_5c0f75_Samsung_A07_Ram_4GB-_128GB.webp"
-  },
-  {
-    "nombre": "Tecno Spark Go 3 Ram4+4GB-128GB",
-    "precio": 220,
-    "categoria": "Celulares",
-    "caracteristicas": [
-      "Tecno Spark Go 3 Ram4+4GB",
-      "128GB",
-      "Tecno Spark Go 3",
-      "Ram4+4GB-128GB"
-    ],
-    "imagen": "imagenes/MundoTek_09_f0edc5_Tecno_Spark_Go_3_Ram4+4GB-128GB.webp"
   },
   {
     "nombre": "Honor Play 10 ram4+4 GB-128GB",
@@ -218,7 +218,7 @@
       "OPPO A5",
       "RAM"
     ],
-    "imagen": null
+    "imagen": "imagenes/MundoTek_18_b85783_OPPO_A5_4G_RAM_4GB-256GB.webp"
   },
   {
     "nombre": "Motorola moto g15 4G Ram 4+8/ 512GB-256GB",
